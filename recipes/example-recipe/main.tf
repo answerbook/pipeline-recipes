@@ -1,6 +1,5 @@
 resource "mezmo_pipeline" "simple_field_parser" {
   title       = "Example Recipe"
-  description = "Parses apache error logs from HTTP webhook"
 }
 
 // Create a simple HTTP source that receives data from a webhook
@@ -27,7 +26,7 @@ resource "mezmo_parse_processor" "error_logs" {
 
 // Create a destination that sends the parsed logs to Mezmo Log Analysis
 resource "mezmo_logs_destination" "destination1" {
-  pipeline_id   = mezmo_pipeline.pipeline1.id
+  pipeline_id   = mezmo_pipeline.simple_field_parser.id
   title         = "My destination"
   description   = "Send logs to Mezmo Log Analysis"
   inputs        = [mezmo_parse_processor.error_logs.id]
